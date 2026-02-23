@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard | PrimeLoan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="navbar">
+    <h1 class="logo">PrimeLoan Admin</h1>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+
+<h2 style="text-align:center; margin-top:30px;">Loan Applications</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Loan Amount</th>
+        <th>Income</th>
+        <th>Employment</th>
+        <th>Purpose</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for app in applications %}
+    <tr>
+        <td>{{ app[0] }}</td>
+        <td>{{ app[1] }}</td>
+        <td>{{ app[2] }}</td>
+        <td>{{ app[3] }}</td>
+        <td>${{ app[4] }}</td>
+        <td>${{ app[5] }}</td>
+        <td>{{ app[6] }}</td>
+        <td>{{ app[7] }}</td>
+
+        <!-- Status with color -->
+        <td class="
+            {% if app[8] == 'Approved' %}status-approved
+            {% elif app[8] == 'Rejected' %}status-rejected
+            {% else %}status-pending
+            {% endif %}
+        ">
+            {{ app[8] }}
+        </td>
+
+        <!-- Action buttons -->
+        <td>
+            {% if app[8] == 'Pending' %}
+                <a href="{{ url_for('update_status', app_id=app[0], status='Approved') }}">✅ Approve</a> |
+                <a href="{{ url_for('update_status', app_id=app[0], status='Rejected') }}">❌ Reject</a>
+            {% else %}
+                —
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard | PrimeLoan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="navbar">
+    <h1 class="logo">PrimeLoan Admin</h1>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+
+<h2 style="text-align:center; margin-top:30px;">Loan Applications</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Loan Amount</th>
+        <th>Income</th>
+        <th>Employment</th>
+        <th>Purpose</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for app in applications %}
+    <tr>
+        <td>{{ app[0] }}</td>
+        <td>{{ app[1] }}</td>
+        <td>{{ app[2] }}</td>
+        <td>{{ app[3] }}</td>
+        <td>${{ app[4] }}</td>
+        <td>${{ app[5] }}</td>
+        <td>{{ app[6] }}</td>
+        <td>{{ app[7] }}</td>
+
+        <!-- Status with color -->
+        <td class="
+            {% if app[8] == 'Approved' %}status-approved
+            {% elif app[8] == 'Rejected' %}status-rejected
+            {% else %}status-pending
+            {% endif %}
+        ">
+            {{ app[8] }}
+        </td>
+
+        <!-- Action buttons -->
+        <td>
+            {% if app[8] == 'Pending' %}
+                <a href="{{ url_for('update_status', app_id=app[0], status='Approved') }}">✅ Approve</a> |
+                <a href="{{ url_for('update_status', app_id=app[0], status='Rejected') }}">❌ Reject</a>
+            {% else %}
+                —
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>

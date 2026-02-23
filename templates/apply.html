@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Apply | PrimeLoan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h2>Loan Application Form</h2>
+
+<form method="POST">
+
+    <input type="text" name="name" placeholder="Full Name" required><br><br>
+    <input type="email" name="email" placeholder="Email Address" required><br><br>
+    <input type="tel" name="phone" placeholder="Phone Number" required><br><br>
+    <input type="number" name="amount" placeholder="Loan Amount" required><br><br>
+    <input type="number" name="income" placeholder="Monthly Income" required><br><br>
+
+    <select name="employment" required>
+        <option value="">Employment Status</option>
+        <option>Employed</option>
+        <option>Self-Employed</option>
+        <option>Unemployed</option>
+    </select><br><br>
+
+    <input type="text" name="purpose" placeholder="Purpose of Loan"><br><br>
+
+    <button type="submit">Submit Application</button>
+
+</form>
+
+<!-- Loan Calculator -->
+<h3>Loan Calculator</h3>
+<input type="number" id="calcAmount" placeholder="Loan Amount">
+<input type="number" id="calcMonths" placeholder="Months to Repay">
+<button type="button" onclick="calculateLoan()">Calculate Monthly Payment</button>
+<p id="monthlyPayment"></p>
+
+<script>
+function calculateLoan() {
+    let amount = document.getElementById("calcAmount").value;
+    let months = document.getElementById("calcMonths").value;
+    let interestRate = 0.05; // 5% monthly interest
+    let monthly = (amount * (1 + interestRate)) / months;
+    document.getElementById("monthlyPayment").innerText = "Estimated Monthly Payment: $" + monthly.toFixed(2);
+}
+</script>
+
+</body>
+</html>
